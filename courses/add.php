@@ -2,7 +2,7 @@
 include "../forAll/nav.php";
 include "../forAll/condigDataBase.php";
 
-if(isset($_POST['send'])){
+if(isset($_POST['send'])){/* INSERT in database courses table */
     $name=$_POST['name'];
     $cost=$_POST['cost'];
     $description=$_POST['description'];
@@ -16,7 +16,7 @@ $name="";
 $cost="";
 $description="";
 $editmode=false;
-if(isset($_GET['Edit'])){
+if(isset($_GET['Edit'])){/*edit mode in add.php file  */
     $id=$_GET['Edit'];
     $show="SELECT * FROM `courses` where courseid=$id";
     $s = mysqli_query($conn,$show);

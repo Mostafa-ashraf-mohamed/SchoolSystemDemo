@@ -4,17 +4,17 @@ include "forAll/condigDataBase.php";
 if(isset($_SESSION["userid"])){
     $userid=$_SESSION["userid"];
     $type=$_SESSION["type"];
-    if($_SESSION["type"]=="student"){
+    if($_SESSION["type"]=="student"){/* home page for student */
         $showData="SELECT * FROM `students`where studentid=$userid";
         $showDataUser="SELECT * FROM `user`where id=$userid and type='$type'";
         $ss = mysqli_query($conn,$showDataUser);
         $userrow=mysqli_fetch_assoc($ss);
-    }else if($_SESSION["type"]=="teacher"){
+    }else if($_SESSION["type"]=="teacher"){/* home page for teacher */
         $showData="SELECT * FROM `teacher`where id=$userid"; 
         $showDataUser="SELECT * FROM `user`where id=$userid and type='$type'";
         $ss = mysqli_query($conn,$showDataUser);
         $userrow=mysqli_fetch_assoc($ss);
-    }else{
+    }else{/* home page for admin */
         $showDataUser="SELECT * FROM `user`where id=$userid and type='$type'";
         $ss = mysqli_query($conn,$showDataUser);
         $userrow=mysqli_fetch_assoc($ss);
@@ -24,7 +24,7 @@ if(isset($_SESSION["userid"])){
     $row=mysqli_fetch_assoc($s);
     }
 }
-if(isset($_POST['send'])){
+if(isset($_POST['send'])){/*edit username and password */
     $editid=$_GET['edit'];
     $username=$_POST['username'];
     $password=$_POST['password'];
@@ -36,7 +36,7 @@ if(isset($_POST['send'])){
 ?>
 <h1 class="text-center text-primary my-5">HOME</h1>
 <?php if(isset($_SESSION["type"])){ ?>
-<?php if($_SESSION["type"]=="student"){ ?>
+<?php if($_SESSION["type"]=="student"){ ?><!--home page profile for student-->
     <div class="page-content page-container" id="page-content">
     <div class="">
         <div class="row container">
@@ -78,7 +78,7 @@ if(isset($_POST['send'])){
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">userName</p>
                                         <h6 class="text-muted f-w-400"><?php echo $userrow['name'] ?></h6>
-                                      <?php if(isset($_GET['edit'])){?>
+                                      <?php if(isset($_GET['edit'])){?><!--start edit mode-->
                                         <input class="input-group" type="text" name="username" value="<?php echo $userrow['name'] ?>" placeholder="New username">
                                         <a href="/amit/home.php" class="mt-1 btn btn-outline-danger" href="">cancel</a>
                                       <?php } ?>
@@ -86,7 +86,7 @@ if(isset($_POST['send'])){
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">password</p>
                                         <h6 class="text-muted f-w-400"><?php echo $userrow['password'] ?></h6>
-                                        <?php if(isset($_GET['edit'])){?>
+                                        <?php if(isset($_GET['edit'])){?><!--start edit mode-->
                                         <input class="input-group" type="text" name="password" value="<?php echo $userrow['password'] ?>" placeholder="New password">
                                         <input name="send" class="mt-1 btn btn-outline-primary" type="submit" value="confirm edit">
                                         <?php } ?>
@@ -127,8 +127,8 @@ if(isset($_POST['send'])){
             </div>
         </div>
     </div>
-</div>
-<?php }elseif($_SESSION["type"]=="teacher"){ ?>
+</div><!--end-->
+<?php }elseif($_SESSION["type"]=="teacher"){ ?><!--home page profile for teacher-->
     <div class="page-content page-container" id="page-content">
     <div class="">
         <div class="row container">
@@ -168,7 +168,7 @@ if(isset($_POST['send'])){
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">userName</p>
                                         <h6 class="text-muted f-w-400"><?php echo $userrow['name'] ?></h6>
-                                      <?php if(isset($_GET['edit'])){?>
+                                      <?php if(isset($_GET['edit'])){?><!--start edit mode-->
                                         <input class="input-group" type="text" name="username" value="<?php echo $userrow['name'] ?>" placeholder="New username">
                                         <a href="/amit/home.php" class="mt-1 btn btn-outline-danger" href="">cancel</a>
                                       <?php } ?>
@@ -176,7 +176,7 @@ if(isset($_POST['send'])){
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">password</p>
                                         <h6 class="text-muted f-w-400"><?php echo $userrow['password'] ?></h6>
-                                        <?php if(isset($_GET['edit'])){?>
+                                        <?php if(isset($_GET['edit'])){?><!--start edit mode-->
                                         <input class="input-group" type="text" name="password" value="<?php echo $userrow['password'] ?>" placeholder="New password">
                                         <input name="send" class="mt-1 btn btn-outline-primary" type="submit" value="confirm edit">
                                         <?php } ?>
@@ -206,8 +206,8 @@ if(isset($_POST['send'])){
             </div>
         </div>
     </div>
-</div>
-<?php }else{ ?>
+</div><!--end-->
+<?php }else{ ?><!--home page profile for admin-->
     <div class="page-content page-container" id="page-content">
     <div class="">
         <div class="row container">
@@ -239,7 +239,7 @@ if(isset($_POST['send'])){
                                     <div class="col-sm-12">
                                         <p class="m-b-10 f-w-600">password</p>
                                         <h6 class="text-muted f-w-400"><?php echo $userrow['password'] ?></h6>
-                                        <?php if(isset($_GET['edit'])){?>
+                                        <?php if(isset($_GET['edit'])){?><!--start edit mode-->
                                         <input class="input-group" type="text" name="password" value="<?php echo $userrow['password'] ?>" placeholder="New password">
                                         <input name="send" class="mt-1 btn btn-outline-primary" type="submit" value="confirm edit">
                                         <a href="/amit/home.php" class="mt-1 btn btn-outline-danger" href="">cancel</a>
@@ -254,7 +254,7 @@ if(isset($_POST['send'])){
             </div>
         </div>
     </div>
-</div>
+</div><!--end-->
 <?php }} ?>
 <?php
 include "forAll/footer.php";

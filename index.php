@@ -6,7 +6,7 @@ if(isset($_GET['logout'])){
   header("location: /amit/index.php");
 }
 if(!isset($_SESSION['Validity'])){
-
+/* cheack password and username */
 if(isset($_POST['login'])){
   $name=$_POST['name'];
   $password = $_POST['password'];
@@ -15,15 +15,14 @@ if(isset($_POST['login'])){
   $numrows= mysqli_num_rows($s);
   $row = mysqli_fetch_assoc($s);
   if($numrows > 0){
+    /* make SESSION for authorization */
     $_SESSION["Validity"] = $row['Validity'];
     $_SESSION["userid"] = $row['id'];
-    $_SESSION["loginid"] = $row['userid'];
     $_SESSION["type"] = $row['type'];
     header("location: /amit/home.php");
   }else{echo "<div class='alert alert-info text-center'>username or password wrong</div>";}
 }
 ?>
-
 <div class="container p-5 border my-5 bg-dark ">
 <h1 class="text-center text-primary my-3">login</h1>
 <form  method="POST">
@@ -48,7 +47,7 @@ if(isset($_POST['login'])){
 
 
 <?php
-}else if (isset($_SESSION['Validity'])){
+}else if (isset($_SESSION['Validity'])){/* cheack if there is login user befor or not */
   header("location: /amit/home.php");
 }
 include "forAll/footer.php";

@@ -2,11 +2,11 @@
 include "../forAll/nav.php";
 include "../forAll/condigDataBase.php";
 
-    $showData="SELECT * FROM `courses`";
+    $showData="SELECT * FROM `courses`";/* get all courses data to list */
     $s = mysqli_query($conn,$showData);
 
 
-if(isset($_GET['delete'])){
+if(isset($_GET['delete'])){/*delete section */
     $delete=$_GET['delete'];
     $showData="DELETE FROM `courses` where courseid = $delete ";
     $ss = mysqli_query($conn,$showData);

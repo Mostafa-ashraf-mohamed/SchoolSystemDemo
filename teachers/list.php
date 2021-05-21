@@ -2,11 +2,11 @@
 include "../forAll/nav.php";
 include "../forAll/condigDataBase.php";
 
-    $showData="SELECT * FROM `teacher`";
+    $showData="SELECT * FROM `teacher`";/* get all teacher data to list */
     $s = mysqli_query($conn,$showData);
 
 
-if(isset($_GET['delete'])){
+if(isset($_GET['delete'])){/*delete section */
     $delete=$_GET['delete'];
     $deleteData="DELETE FROM `teacher` where id = $delete ";
     $ss = mysqli_query($conn,$deleteData);
@@ -61,7 +61,7 @@ if(isset($_GET['delete'])){
         </tbody>
     </table>
 </div>
-<?php else: ?>
+<?php else: ?><!-- authorized validation -->
     <h1 class="text-center text-primary my-3">not authorized</h1>
 <?php endif; ?>
 

@@ -7,24 +7,15 @@ if(isset($_POST['send'])){
     $teacherid=$_POST['teacherid'];
     $password =$_POST['password'];
 
-     /* Code image ; 
-    1-name
-    2-type
-    3-path
-    4-location
-    */   
+     /* Code image */   
     $image_name =  $_FILES['image']['name'];
     $image_type = $_FILES['image']['type']; 
     $image_path = $_FILES['image']['tmp_name'];
     $location = "uploads/";
     $mih=move_uploaded_file($image_path , $location . $image_name );
-      if($mih){
-         echo "Image uploadet True";
-     }else{
-        echo "Image uploadet false";
-     }
 /* Code image ; */
 
+    /* INSERT in database sudent and user table */
     $insert="INSERT INTO `students` VALUES (NULL,'$name',$level,'$image_name',$teacherid)";
     $i = mysqli_query($conn,$insert);
     $f=getid("students","studentid");
@@ -32,6 +23,7 @@ if(isset($_POST['send'])){
     $io = mysqli_query($conn,$insertuser);
     testmessage($i,"record added");
     testmessage($io,"username = $name and password = $password ");
+    /*end INSERT in database sudent and user table */
 }
 
 
@@ -39,7 +31,7 @@ $name="";
 $level="";
 $teacherid="";
 $editmode=false;
-if(isset($_GET['Edit'])){
+if(isset($_GET['Edit'])){/*edit mode in add.php file  */
     $id=$_GET['Edit'];
     $show="SELECT * FROM `students` where studentid= $id"  ;
     $s = mysqli_query($conn,$show);

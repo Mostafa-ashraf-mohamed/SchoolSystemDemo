@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start(); /* to start session to stay login   */ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

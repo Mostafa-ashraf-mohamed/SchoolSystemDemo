@@ -18,6 +18,7 @@ function testmessage($name,$masg){
      }
 
  }
+ /* function to get the last id enter in the table */
  function getid($table,$cond){
  $host = "localhost";
  $user="root";
@@ -29,4 +30,5 @@ function testmessage($name,$masg){
  $row = mysqli_fetch_assoc($i);
  return $row['id'] ;
  }
+ /*===============================================*/
 ?>

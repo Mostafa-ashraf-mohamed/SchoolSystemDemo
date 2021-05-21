@@ -23,6 +23,7 @@ if (isset($_POST['send'])) {
         echo "Image uploadet false";
      }
 /* Code image ; */
+/* INSERT in database sudent and user table */
     $insert = "INSERT INTO `teacher` VALUES (NULL,'$name',$salary ,'$image_name',$courseID)";
     $i = mysqli_query($conn, $insert);
     testmessage($i, "record added");
@@ -30,6 +31,7 @@ if (isset($_POST['send'])) {
     $insertuser = "INSERT INTO `user` VALUES (NULL,'$name','teacher','tlist','$password',$f)";
     $io = mysqli_query($conn, $insertuser);
     testmessage($io, "username = $name and password = $password ");
+    /* end INSERT in database sudent and user table */
 }
 
 
@@ -37,7 +39,7 @@ $name = "";
 $salary = "";
 $courseID = "";
 $editmode = false;
-if (isset($_GET['Edit'])) {
+if (isset($_GET['Edit'])) {/*edit mode in add.php file  */
     $id = $_GET['Edit'];
     $show = "SELECT * FROM `teacher` where id= $id";
     $s = mysqli_query($conn, $show);
